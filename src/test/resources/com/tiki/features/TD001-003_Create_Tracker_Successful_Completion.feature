@@ -1,7 +1,7 @@
 Feature: Create the tracker
 
   Background: 
-    Given I logged into Tiki and HomePage is displayed
+    Given a user logged into Tiki Application, HomePage is displayed
     When we create tracker
     And under General fill up the Name "<name>"
 
@@ -24,3 +24,5 @@ Feature: Create the tracker
     And click Permissions and under Creation date constraint selct the date using calendar
     And enter "09:15", "AM" in Time box
     Then save it and verify the Name
+    
+  
