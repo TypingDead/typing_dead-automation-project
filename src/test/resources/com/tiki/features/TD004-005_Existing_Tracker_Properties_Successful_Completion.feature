@@ -13,3 +13,6 @@ Feature: Existing tracker properties
   Scenario: Delete duplicate trackers
     And a user finds trackers with the same name & leaves unique tracker
     And a user verifies all trackers have unique name
+
+    
+    
