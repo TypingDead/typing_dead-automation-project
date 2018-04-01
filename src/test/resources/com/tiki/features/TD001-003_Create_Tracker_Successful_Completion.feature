@@ -1,28 +1,26 @@
 Feature: Create the tracker
 
   Background: 
-    Given a user logged into Tiki Application, HomePage is displayed
-    When we create tracker
-    And under General fill up the Name "<name>"
+    Given a user logges into Tiki Application, HomePage is displayed
+    And a user creates tracker
+    And under General a user fills up the Name "<name>"
 
   Scenario: Create the tracker with General & Features information
-    And fill up Description "<description>"
-    And click Features
-    And select Allow Ratings & change Rating options "3,5,10"
-    And select Allow Attachments and verify Creation date, Views, File size are selected
-    Then save it and verify the Name
-    And verify the Description
+    And a user fills up Description "<description>"
+    And a user clicks Features
+    And a user selects Allow Ratings & changes Rating options "3,5,10"
+    And a user selects Allow Attachments and verifies Creation date, Views, File size are selected
+    Then a user saves it and verifies the Name
+    And a user verifies the Description
 
   Scenario: Create the tracker with General & Display information
-    And click Display
-    And enter in Logo "Typing Dead"
-    And select Show Status and verify "Show status to tracker administrator only" is diplayed
-    And in Default sort order select "Creation Date"
-    Then save it and verify the Name
+    And a user clicks Display
+    And a user enters in Logo "Typing Dead"
+    And a user selects Show Status and verifies "Show status to tracker administrator only" is diplayed
+    And in Default sort order a user selects "Creation Date"
+    Then a user saves it and verifies the Name
 
   Scenario: Create the tracker with General & Permissions information
-    And click Permissions and under Creation date constraint selct the date using calendar
-    And enter "09:15", "AM" in Time box
-    Then save it and verify the Name
-    
-  
+    And a user clicks Permissions and under Creation date constraint selects the date using calendar
+    And a user enters "09:15", "AM" in Time box
+    Then a user saves it and verifies the Name
