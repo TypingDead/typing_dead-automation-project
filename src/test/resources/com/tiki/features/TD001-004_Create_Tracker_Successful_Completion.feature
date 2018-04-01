@@ -24,3 +24,8 @@ Feature: Create the tracker
     And a user clicks Permissions and under Creation date constraint selects the date using calendar
     And a user enters "09:15", "AM" in Time box
     Then a user saves it and verifies the Name
+
+  Scenario:  
+    And a user clicks on the Display and selects Show creation date when listing items
+    And a user clicks Date and Time Format Help and verifies the title is "PHP: strftime - Manual "
+    Then a user scrolls down and clicks add a note and verifies the title is "PHP: Add Manual Note"
