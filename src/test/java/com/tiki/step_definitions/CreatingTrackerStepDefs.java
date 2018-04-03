@@ -19,7 +19,8 @@ public class CreatingTrackerStepDefs {
 	@Given("^a user logges into Tiki Application, HomePage is displayed$")
 	public void a_user_logges_into_Tiki_Application_HomePage_is_displayed() {
 		Driver.getInstance().get(ConfigurationReader.getProperty("url"));
-		BrowserUtils.waitForClickablility(homePage.loginMenu, 10);
+		BrowserUtils.waitForVisibility(homePage.loginMenu, 10);
+		BrowserUtils.waitForClickablility(homePage.loginMenu, 2);
 		JavascriptExecutor js = (JavascriptExecutor) Driver.getInstance();
 		js.executeScript("arguments[0].click();", homePage.loginMenu);
 		assertTrue(homePage.loginMenu.isDisplayed());

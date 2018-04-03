@@ -12,7 +12,7 @@ public class HomePage {
 		PageFactory.initElements(Driver.getInstance(), this);
 	}
 
-	@FindBy(css = "button[class='btn btn-link dropdown-toggle']") // h3[class='panel-title clearfix']
+	@FindBy(css = "div[class='siteloginbar_popup dropdown btn-group pull-right open']") // h3[class='panel-title clearfix']
 	public WebElement loginMenu;
 
 	@FindBy(id = "login-user_1")
