@@ -1,6 +1,7 @@
 package com.tiki.step_definitions;
 
-import com.tiki.pages.HomePage;
+
+import com.tiki.pages.LoginPage;
 import com.tiki.utilities.ConfigurationReader;
 import com.tiki.utilities.Driver;
 
@@ -11,7 +12,7 @@ import cucumber.api.java.en.When;
 
 public class Creating_Event_In_Calendar_Successful {
 	
-	HomePage homePage = new HomePage();
+	LoginPage loginPage = new LoginPage();
 	
 	
 
