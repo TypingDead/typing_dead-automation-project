@@ -7,13 +7,13 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.tiki.utilities.Driver;
 
-public class HomePage {
+public class LoginPage {
 
-	public HomePage() {
+	public LoginPage() {
 		PageFactory.initElements(Driver.getInstance(), this);
 	}
 
-	@FindBy(css = "button[class='btn btn-link dropdown-toggle']") // h3[class='panel-title clearfix']
+	@FindBy(css = "button[class='btn btn-link dropdown-toggle']")
 	public WebElement loginMenu;
 
 	@FindBy(id = "login-user_1")
@@ -24,6 +24,9 @@ public class HomePage {
 
 	@FindBy(css = "button[type='submit']")
 	public WebElement login;
+	
+	@FindBy(linkText="start using it right away")
+	public WebElement start;
 
 	public void login(String username, String pwd) {
 		JavascriptExecutor js = (JavascriptExecutor) Driver.getInstance();

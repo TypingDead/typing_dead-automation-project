@@ -1,11 +1,6 @@
 package com.tiki.step_definitions;
 
-import static org.testng.Assert.assertTrue;
-
-import org.openqa.selenium.JavascriptExecutor;
-
-import com.tiki.pages.HomePage;
-import com.tiki.utilities.BrowserUtils;
+import com.tiki.pages.LoginPage;
 import com.tiki.utilities.ConfigurationReader;
 import com.tiki.utilities.Driver;
 
@@ -14,12 +9,13 @@ import cucumber.api.java.en.Then;
 
 public class CreatingTrackerStepDefs {
 
-	HomePage homePage = new HomePage();
+	LoginPage loginPage = new LoginPage();
 
 	@Given("^a user logges into Tiki Application, HomePage is displayed$")
 	public void a_user_logges_into_Tiki_Application_HomePage_is_displayed() throws InterruptedException {
 		Driver.getInstance().get(ConfigurationReader.getProperty("url"));
-		homePage.login(ConfigurationReader.getProperty("username"), ConfigurationReader.getProperty("password"));	
+		loginPage.login(ConfigurationReader.getProperty("username"), ConfigurationReader.getProperty("password"));	
+		loginPage.start.click();
 	}
 	
 	@Given("^a user creates tracker$")
