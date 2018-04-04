@@ -21,7 +21,7 @@ public class LoginPage {
 
 	@FindBy(id = "login-pass_1")
 	public WebElement password;
-
+	
 	@FindBy(css = "button[type='submit']")
 	public WebElement login;
 	
