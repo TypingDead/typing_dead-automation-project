@@ -1,10 +1,13 @@
+
 Feature: Creating a new calendar
 
+
   Background: 
-    Given a user logged into Tiki Application, HomePage is displayed
+   Given a user logges into Tiki Application, HomePage is displayed
     And a user opens Calendar
     When a user selects the Add Event
-
+    
+@Creating_Event
   Scenario: Create a new calendar
     And a user selects Admin Calendars, clicks the Create Calendar link
     And in the name box a user enters "Typing Dead Event"and in the Description a user enters "This event starts now"

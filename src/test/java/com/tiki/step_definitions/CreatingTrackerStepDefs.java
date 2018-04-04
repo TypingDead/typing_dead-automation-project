@@ -21,7 +21,7 @@ public class CreatingTrackerStepDefs {
 		Driver.getInstance().get(ConfigurationReader.getProperty("url"));
 		homePage.login(ConfigurationReader.getProperty("username"), ConfigurationReader.getProperty("password"));	
 	}
-
+	
 	@Given("^a user creates tracker$")
 	public void a_user_creates_tracker() {
 
