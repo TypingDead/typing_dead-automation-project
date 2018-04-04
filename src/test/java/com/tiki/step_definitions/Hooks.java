@@ -14,7 +14,6 @@ import cucumber.api.java.Before;
 
 public class Hooks {
 
-	
 	@Before
 	public void setUp() {
 		WebDriver driver = Driver.getInstance();
@@ -31,6 +30,6 @@ public class Hooks {
 			// adding a screenshot to the report
 			scenario.embed(screenshot, "image/png");
 		}
-	//	Driver.closeDriver();
+		Driver.closeDriver();
 	}
 }
