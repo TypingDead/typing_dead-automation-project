@@ -3,7 +3,7 @@ Feature: Creating a new calendar
 
 
   Background: 
-   Given a user logges into Tiki Application, HomePage is displayed
+   Given a user logs into Tiki Application, HomePage is displayed
     And a user opens Calendar
     When a user selects the Add Event
     

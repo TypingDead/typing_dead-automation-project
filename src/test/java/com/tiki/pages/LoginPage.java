@@ -1,6 +1,7 @@
 package com.tiki.pages;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -21,18 +22,32 @@ public class LoginPage {
 
 	@FindBy(id = "login-pass_1")
 	public WebElement password;
-	
+
 	@FindBy(css = "button[type='submit']")
 	public WebElement login;
-	
-	@FindBy(linkText="start using it right away")
+
+	@FindBy(linkText = "start using it right away")
 	public WebElement start;
+
+	@FindBy(linkText = "Enable specific Tiki features")
+	public WebElement enableFeatures;
 
 	public void login(String username, String pwd) {
 		JavascriptExecutor js = (JavascriptExecutor) Driver.getInstance();
-		js.executeScript("arguments[0].click();",loginMenu);
+		js.executeScript("arguments[0].click();", loginMenu);
 		userName.sendKeys(username);
 		password.sendKeys(pwd);
 		login.click();
+	}
+
+	public void openMenuPage() {
+		try {
+			if (start.isDisplayed()) {
+				start.click();
+			} else
+				enableFeatures.click();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+		}
 	}
 }

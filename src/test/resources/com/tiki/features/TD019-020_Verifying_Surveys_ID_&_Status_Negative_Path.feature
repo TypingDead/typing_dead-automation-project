@@ -1,7 +1,7 @@
 Feature:
 
  Background: 
-    Given a user logges into Tiki Application, HomePage is displayed
+    Given a user logs into Tiki Application, HomePage is displayed
     And a user opens Surveys 
 
 Scenario: Survey status is not closed

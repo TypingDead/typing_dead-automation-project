@@ -6,8 +6,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 @CucumberOptions(
 	plugin= {"pretty",
 			"html:target/cucumber-report"},
-
-	tags="@Creating_Event",
+	tags="@Create_Tracker",
 	features = "src\\test\\resources\\com\\tiki\\features", 
 	glue="com\\tiki\\step_definitions",
 	dryRun = false

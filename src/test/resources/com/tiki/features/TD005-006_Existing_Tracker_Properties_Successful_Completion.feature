@@ -1,7 +1,7 @@
 Feature: Existing tracker properties
 
   Background: 
-    Given a user logged into Tiki Application, HomePage is displayed
+    Given a user logs into Tiki Application, HomePage is displayed
     And tracker list is open
 
   Scenario: Existing tracker properties

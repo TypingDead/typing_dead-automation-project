@@ -1,7 +1,7 @@
 Feature: Genearl Settings & Preferences Changes
 
   Background: 
-    Given a user logged into Tiki Application, HomePage is displayed
+    Given a user logs into Tiki Application, HomePage is displayed
     And a user chooses Control Panels and General link is selected
 
   Scenario: Preference changes under General Control Panel Settings

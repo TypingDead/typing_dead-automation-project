@@ -1,8 +1,8 @@
-@create_tracker
+@Create_Tracker
 Feature: Create the tracker
 
   Background: 
-    Given a user logges into Tiki Application, HomePage is displayed
+    Given a user logs into Tiki Application, HomePage is displayed
     And a user creates tracker
     And under General a user fills up the Name "<name>"
 

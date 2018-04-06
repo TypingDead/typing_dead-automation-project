@@ -1,6 +1,20 @@
 package com.tiki.step_definitions;
 
+import static org.testng.Assert.assertEquals;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+import com.tiki.pages.HomePage;
 import com.tiki.pages.LoginPage;
+import com.tiki.pages.TrackerPage;
 import com.tiki.utilities.ConfigurationReader;
 import com.tiki.utilities.Driver;
 
@@ -10,21 +24,44 @@ import cucumber.api.java.en.Then;
 public class CreatingTrackerStepDefs {
 
 	LoginPage loginPage = new LoginPage();
+	HomePage homePage = new HomePage();
+	TrackerPage trackerPage = new TrackerPage();
+	Workbook workbook;
+	Sheet worksheet;
+	Row row;
+	FileInputStream inputStream;
+	FileOutputStream outStream;
 
-	@Given("^a user logges into Tiki Application, HomePage is displayed$")
+	@Given("^a user logs into Tiki Application, HomePage is displayed$")
 	public void a_user_logges_into_Tiki_Application_HomePage_is_displayed() throws InterruptedException {
 		Driver.getInstance().get(ConfigurationReader.getProperty("url"));
-		loginPage.login(ConfigurationReader.getProperty("username"), ConfigurationReader.getProperty("password"));	
-		loginPage.start.click();
+		loginPage.login(ConfigurationReader.getProperty("username"), ConfigurationReader.getProperty("password"));
+		loginPage.openMenuPage();
+		assertEquals(Driver.getInstance().getTitle(), homePage.homePageTitle);
 	}
-	
+
 	@Given("^a user creates tracker$")
 	public void a_user_creates_tracker() {
+		homePage.openTrackerList();
+		trackerPage.createTracker.click();
 
 	}
 
 	@Given("^under General a user fills up the Name \"([^\"]*)\"$")
-	public void under_General_a_user_fills_up_the_Name(String arg1) {
+	public void under_General_a_user_fills_up_the_Name(String name) throws Exception {
+		inputStream = new FileInputStream(ConfigurationReader.getProperty("testdata_path"));
+		workbook = WorkbookFactory.create(inputStream);
+		worksheet = workbook.getSheetAt(0);
+		Cell nameCell;
+		Cell descriptionCell;
+		for (int i = 0; i <= worksheet.getLastRowNum(); i++) {
+			row = worksheet.getRow(i + 1);
+			nameCell = row.getCell(i);
+			descriptionCell = row.getCell(i+1);
+			trackerPage.name.sendKeys(nameCell.toString());
+			trackerPage.description.sendKeys(descriptionCell.toString());
+			trackerPage.save.click();
+		}
 
 	}
 
@@ -50,7 +87,7 @@ public class CreatingTrackerStepDefs {
 
 	@Then("^a user saves it and verifies the Name$")
 	public void a_user_saves_it_and_verifies_the_Name() {
-
+		trackerPage.save();
 	}
 
 	@Then("^a user verifies the Description$")

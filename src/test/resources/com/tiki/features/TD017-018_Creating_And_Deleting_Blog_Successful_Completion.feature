@@ -1,7 +1,7 @@
 Feature: Creating and Deleting a Blog
 
   Background: 
-    Given a user logged into Tiki Application, HomePage is displayed
+    Given a user logs into Tiki Application, HomePage is displayed
 
   Scenario: Creating a Blog
     When a user goes to Blog and clicks on Create Blog

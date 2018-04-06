@@ -1,7 +1,7 @@
 Feature: Create Categories
 
   Background: 
-    Given a user logges into Tiki Application, HomePage is displayed
+    Given a user logs into Tiki Application, HomePage is displayed
 
   Scenario: 
     And a user creates tracker

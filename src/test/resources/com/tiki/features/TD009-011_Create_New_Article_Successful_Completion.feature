@@ -1,7 +1,7 @@
 Feature: Create new Article
 
   Background: 
-    Given a user logged into Tiki Application, HomePage is displayed
+    Given a user logs into Tiki Application, HomePage is displayed
     Then a user creates New Article
 
   Scenario: Create new Article with content
