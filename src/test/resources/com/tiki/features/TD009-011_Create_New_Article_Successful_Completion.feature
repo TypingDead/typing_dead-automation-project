@@ -1,12 +1,13 @@
+
 Feature: Create new Article
 
   Background: 
     Given a user logs into Tiki Application, HomePage is displayed
     Then a user creates New Article
-
+@Dima
   Scenario: Create new Article with content
-    Then a user selects the Content and fills the Title field "<Article Title>"
-    And a user fills the Heading and Body fields
+    Then a user fills the Title field "Tiping Dead Forever"
+    And a user fills the Heading field "It's the best team" and Body field "Never give up"
     And a user selects Allow full HTML checkbox
     And a user saves it
     And a user verifies article Title, Heading and Body text is displayed
@@ -19,8 +20,9 @@ Feature: Create new Article
     And a user selects in Expiration Date "April", 30, 2018
     And a user saves it
     Then a user verifies "<Article Title>" and "Jimmy Johns" and "2017-06-11" is displayed
-
+    
+@Dima
   Scenario: Delete Articles #number should be changed 
     Then a user opens List Articles and saves the number of articles 
-    And a user finds "<Article Title>" and hovers over Actions link, removes the article
+    And a user finds "Tiping Dead Forever" and hovers over Actions link, removes the article
     And a user verifies the number of articles is less by one
