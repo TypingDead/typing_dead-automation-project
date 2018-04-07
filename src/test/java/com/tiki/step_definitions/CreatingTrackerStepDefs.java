@@ -3,9 +3,14 @@ package com.tiki.step_definitions;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import com.tiki.pages.HomePage;
 import com.tiki.pages.LoginPage;
 import com.tiki.pages.TrackerPage;
+import com.tiki.utilities.BrowserUtils;
 import com.tiki.utilities.ConfigurationReader;
 import com.tiki.utilities.Driver;
 
@@ -17,7 +22,6 @@ public class CreatingTrackerStepDefs {
 	LoginPage loginPage = new LoginPage();
 	HomePage homePage = new HomePage();
 	TrackerPage trackerPage = new TrackerPage();
-
 
 	@Given("^a user logs into Tiki Application, HomePage is displayed$")
 	public void a_user_logges_into_Tiki_Application_HomePage_is_displayed() throws InterruptedException {
@@ -58,9 +62,9 @@ public class CreatingTrackerStepDefs {
 	@Given("^a user selects Allow Attachments and verifies Creation date, Views, File size are selected$")
 	public void a_user_selects_Allow_Attachments_and_verifies_Creation_date_Views_File_size_are_selected() {
 		trackerPage.selectAllowAttachments();
-		assertTrue(trackerPage.creationDateBox.isSelected());
-		assertTrue(trackerPage.viewsBox.isSelected());
-		assertTrue(trackerPage.fileSizeBox.isSelected());
+		assertTrue(trackerPage.creationDateCheckBox.isSelected());
+		assertTrue(trackerPage.viewsCheckBox.isSelected());
+		assertTrue(trackerPage.fileSizeCheckBox.isSelected());
 	}
 
 	@Then("^a user saves it and verifies the Name is \"([^\"]*)\"$")
@@ -76,27 +80,34 @@ public class CreatingTrackerStepDefs {
 
 	@Given("^a user clicks Display$")
 	public void a_user_clicks_Display() {
-
+		trackerPage.display.click();
 	}
 
 	@Given("^a user enters in Logo \"([^\"]*)\"$")
-	public void a_user_enters_in_Logo(String arg1) {
-
+	public void a_user_enters_in_Logo(String logo) {
+		trackerPage.logo.sendKeys(logo);
 	}
 
 	@Given("^a user selects Show Status and verifies \"([^\"]*)\" is diplayed$")
-	public void a_user_selects_Show_Status_and_verifies_is_diplayed(String arg1) {
-
+	public void a_user_selects_Show_Status_and_verifies_is_diplayed(String showStatusAdminOnly) {
+		trackerPage.selectShowStatus();
+		assertEquals(trackerPage.showStatusAdminOnly.getText(), showStatusAdminOnly);
 	}
 
 	@Given("^in Default sort order a user selects \"([^\"]*)\"$")
-	public void in_Default_sort_order_a_user_selects(String arg1) {
-
+	public void in_Default_sort_order_a_user_selects(String creationDate) {
+		trackerPage.selectDefaultOrderKey(creationDate);
 	}
 
+	
+	//work on date
 	@Given("^a user clicks Permissions and under Creation date constraint selects the date using calendar$")
 	public void a_user_clicks_Permissions_and_under_Creation_date_constraint_selects_the_date_using_calendar() {
-
+		trackerPage.permissions.click();
+		String todaysDate = LocalDate.parse(LocalDate.now().toString(), DateTimeFormatter.ofPattern("MM/dd/yyyy"))
+				.toString();
+		System.out.println(todaysDate + " -------------------------------------");
+		trackerPage.startDate.sendKeys(todaysDate);
 	}
 
 	@Given("^a user enters \"([^\"]*)\", \"([^\"]*)\" in Time box$")
