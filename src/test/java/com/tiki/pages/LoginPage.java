@@ -47,7 +47,6 @@ public class LoginPage {
 			} else
 				enableFeatures.click();
 		} catch (NoSuchElementException e) {
-			e.printStackTrace();
 		}
 	}
 }

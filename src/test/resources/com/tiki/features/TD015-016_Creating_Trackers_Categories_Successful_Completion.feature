@@ -5,7 +5,7 @@ Feature: Create Categories
 
   Scenario: 
     And a user creates tracker
-    And under General a user fills up the Name "<name>"
+    And under General a user fills up the Name "Typing Dead Tracker"
     And a user clicks on the Categories and clicks on Categories link
     When a user in Parent selects "Week 1" and in Name enters "Features"
     And a user fills up the Description with "Features are created by Typing Dead"

@@ -1,16 +1,7 @@
 package com.tiki.step_definitions;
 
 import static org.testng.Assert.assertEquals;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
+import static org.testng.Assert.assertTrue;
 
 import com.tiki.pages.HomePage;
 import com.tiki.pages.LoginPage;
@@ -26,11 +17,7 @@ public class CreatingTrackerStepDefs {
 	LoginPage loginPage = new LoginPage();
 	HomePage homePage = new HomePage();
 	TrackerPage trackerPage = new TrackerPage();
-	Workbook workbook;
-	Sheet worksheet;
-	Row row;
-	FileInputStream inputStream;
-	FileOutputStream outStream;
+
 
 	@Given("^a user logs into Tiki Application, HomePage is displayed$")
 	public void a_user_logges_into_Tiki_Application_HomePage_is_displayed() throws InterruptedException {
@@ -49,50 +36,42 @@ public class CreatingTrackerStepDefs {
 
 	@Given("^under General a user fills up the Name \"([^\"]*)\"$")
 	public void under_General_a_user_fills_up_the_Name(String name) throws Exception {
-		inputStream = new FileInputStream(ConfigurationReader.getProperty("testdata_path"));
-		workbook = WorkbookFactory.create(inputStream);
-		worksheet = workbook.getSheetAt(0);
-		Cell nameCell;
-		Cell descriptionCell;
-		for (int i = 0; i <= worksheet.getLastRowNum(); i++) {
-			row = worksheet.getRow(i + 1);
-			nameCell = row.getCell(i);
-			descriptionCell = row.getCell(i+1);
-			trackerPage.name.sendKeys(nameCell.toString());
-			trackerPage.description.sendKeys(descriptionCell.toString());
-			trackerPage.save.click();
-		}
-
+		trackerPage.name.sendKeys(name);
 	}
 
 	@Given("^a user fills up Description \"([^\"]*)\"$")
-	public void a_user_fills_up_Description(String arg1) {
-
+	public void a_user_fills_up_Description(String description) {
+		trackerPage.description.sendKeys(description);
 	}
 
 	@Given("^a user clicks Features$")
 	public void a_user_clicks_Features() {
-
+		trackerPage.features.click();
 	}
 
 	@Given("^a user selects Allow Ratings & changes Rating options \"([^\"]*)\"$")
-	public void a_user_selects_Allow_Ratings_changes_Rating_options(String arg1) {
-
+	public void a_user_selects_Allow_Ratings_changes_Rating_options(String ratings) {
+		trackerPage.selectAllowRatings();
+		trackerPage.ratingOptions.sendKeys(ratings);
 	}
 
 	@Given("^a user selects Allow Attachments and verifies Creation date, Views, File size are selected$")
 	public void a_user_selects_Allow_Attachments_and_verifies_Creation_date_Views_File_size_are_selected() {
-
+		trackerPage.selectAllowAttachments();
+		assertTrue(trackerPage.creationDateBox.isSelected());
+		assertTrue(trackerPage.viewsBox.isSelected());
+		assertTrue(trackerPage.fileSizeBox.isSelected());
 	}
 
-	@Then("^a user saves it and verifies the Name$")
-	public void a_user_saves_it_and_verifies_the_Name() {
+	@Then("^a user saves it and verifies the Name is \"([^\"]*)\"$")
+	public void a_user_saves_it_and_verifies_the_Name_is(String name) {
 		trackerPage.save();
+		assertEquals(trackerPage.trackerName.getText(), name);
 	}
 
-	@Then("^a user verifies the Description$")
-	public void a_user_verifies_the_Description() {
-
+	@Then("^a user verifies the Description is \"([^\"]*)\"$")
+	public void a_user_verifies_the_Description_is(String description) {
+		assertEquals(trackerPage.trackerDescription.getText(), description);
 	}
 
 	@Given("^a user clicks Display$")
