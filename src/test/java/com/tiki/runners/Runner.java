@@ -8,9 +8,9 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 			"html:target/cucumber-report",
 			"json:target/cucumber.json"
 	},
-	tags="@Create_Tracker",
-	features = "src\\test\\resources\\com\\tiki\\features", 
-	glue="com\\tiki\\step_definitions",
+	tags="@Create_Delete_Blog",
+	features = "src/test/resources/com/tiki/features", 
+	glue="com/tiki/step_definitions",
 	dryRun = false
 	)
 

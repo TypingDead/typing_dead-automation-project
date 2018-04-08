@@ -40,7 +40,7 @@ public class HomePage {
 	@FindBy(partialLinkText="Blogs")
 	public WebElement blogs;
 	
-	@FindBy(css="a[href='tiki-edit_blog.php']")
+	@FindBy(xpath="//*[@id=\"menu_option266\"]/li[2]/a")
 	public WebElement createBlog;
 	
 	@FindBy(css= "button[class='dropdown-toggle login_link btn btn-link']")
