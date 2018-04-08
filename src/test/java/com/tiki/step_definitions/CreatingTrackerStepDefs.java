@@ -99,20 +99,20 @@ public class CreatingTrackerStepDefs {
 		trackerPage.selectDefaultOrderKey(creationDate);
 	}
 
-	
-	//work on date
-	@Given("^a user clicks Permissions and under Creation date constraint selects the date using calendar$")
-	public void a_user_clicks_Permissions_and_under_Creation_date_constraint_selects_the_date_using_calendar() {
+	@Given("^a user clicks Permissions and under Creation date constraint selects the date$")
+	public void a_user_clicks_Permissions_and_under_Creation_date_constraint_selects_the_date() {
 		trackerPage.permissions.click();
-		String todaysDate = LocalDate.parse(LocalDate.now().toString(), DateTimeFormatter.ofPattern("MM/dd/yyyy"))
-				.toString();
-		System.out.println(todaysDate + " -------------------------------------");
+		// sending the today`s date to Date box
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatters = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+		String todaysDate = date.format(formatters);
 		trackerPage.startDate.sendKeys(todaysDate);
+
 	}
 
 	@Given("^a user enters \"([^\"]*)\", \"([^\"]*)\" in Time box$")
-	public void a_user_enters_in_Time_box(String arg1, String arg2) {
-
+	public void a_user_enters_in_Time_box(String hours, String am) {
+		trackerPage.startTime.sendKeys(hours +" "+ am);
 	}
 
 	@Given("^a user clicks on the Display and selects Show creation date when listing items$")

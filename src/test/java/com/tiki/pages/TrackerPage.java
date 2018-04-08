@@ -69,6 +69,8 @@ public class TrackerPage {
 	
 	public WebElement startDate;
 	
+	public WebElement startTime;
+	
 	public void save() {
 		if(save.isDisplayed()) {
 			save.click();
