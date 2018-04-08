@@ -37,6 +37,12 @@ public class HomePage {
 	@FindBy(css = "a[href='tiki-list_trackers.php']")
 	public WebElement listTrackers;
 	
+	@FindBy(partialLinkText="Blogs")
+	public WebElement blogs;
+	
+	@FindBy(css="a[href='tiki-edit_blog.php']")
+	public WebElement createBlog;
+	
 	@FindBy(css= "button[class='dropdown-toggle login_link btn btn-link']")
 	public WebElement logoutMenu;
 	
