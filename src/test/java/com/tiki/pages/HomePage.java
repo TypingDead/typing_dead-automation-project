@@ -1,8 +1,10 @@
 package com.tiki.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Factory;
 
 import com.tiki.utilities.Driver;
 
@@ -35,8 +37,20 @@ public class HomePage {
 	@FindBy(css = "a[href='tiki-list_trackers.php']")
 	public WebElement listTrackers;
 	
+	@FindBy(css= "button[class='dropdown-toggle login_link btn btn-link']")
+	public WebElement logoutMenu;
+	
+	@FindBy(linkText="Log out")
+	public WebElement logout;
+	
 	public void openTrackerList() {
 		trackers.click();
 		listTrackers.click();
+	}
+	
+	public void logout() {
+		JavascriptExecutor js = (JavascriptExecutor) Driver.getInstance();
+		js.executeScript("arguments[0].click();", logoutMenu);
+		logout.click();
 	}
 }

@@ -8,12 +8,12 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 			"html:target/cucumber-report",
 			"json:target/cucumber.json"
 	},
-	tags="@Create_Tracker",
+	tags="@Smoke",
 	features = "src\\test\\resources\\com\\tiki\\features", 
 	glue="com\\tiki\\step_definitions",
 	dryRun = false
 	)
 
-public class Runner extends AbstractTestNGCucumberTests{
+public class SmokeTestRunner extends AbstractTestNGCucumberTests{
 
 }

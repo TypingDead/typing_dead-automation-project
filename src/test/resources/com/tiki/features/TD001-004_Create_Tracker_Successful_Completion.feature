@@ -1,4 +1,4 @@
-@Create_Tracker
+
 Feature: Create the tracker
 
   Background: 
@@ -21,6 +21,7 @@ Feature: Create the tracker
     And in Default sort order a user selects "Creation Date"
    Then a user saves it and verifies the Name is "Typing Dead Tracker"
 
+@Create_Tracker
   Scenario: Create the tracker with General & Permissions information
     And a user clicks Permissions and under Creation date constraint selects the date using calendar
     And a user enters "09:15", "AM" in Time box
