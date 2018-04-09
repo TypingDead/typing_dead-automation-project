@@ -10,7 +10,7 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-public class Creating_Deleting_Blogs {
+public class CreatingDeletingBlogsStepDefs {
 
 	LoginPage loginPage = new LoginPage();
 	HomePage homePage = new HomePage();

@@ -29,10 +29,16 @@ public class BrowserUtils {
 		return elemTxts;
 	}
 
+	public static void clickElementWithJS(WebElement element) {
+		JavascriptExecutor js = (JavascriptExecutor) Driver.getInstance();
+		js.executeScript("arguments[0].click();", element);
+	}
+	
 	public static void hoverOver(WebElement element) {
 		Actions action = new Actions(Driver.getInstance());
 		action.moveToElement(element).perform();
 	}
+	
 
 	public static WebElement waitForVisibility(WebElement element, int timeToWaitInSec) {
 		WebDriverWait wait = new WebDriverWait(Driver.getInstance(), timeToWaitInSec);

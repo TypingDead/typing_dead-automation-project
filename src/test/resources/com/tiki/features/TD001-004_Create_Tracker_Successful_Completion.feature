@@ -29,5 +29,5 @@ Feature: Create the tracker
 @Create_Tracker
   Scenario: 
     And a user clicks on the Display and selects Show creation date when listing items
-    And a user clicks Date and Time Format Help and verifies the title is "PHP: strftime - Manual "
+    And a user clicks Date and Time Format Help and verifies the title is "PHP: strftime - Manual"
     Then a user scrolls down and clicks add a note and verifies the title is "PHP: Add Manual Note"

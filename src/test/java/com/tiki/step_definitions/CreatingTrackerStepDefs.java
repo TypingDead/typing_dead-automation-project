@@ -4,11 +4,13 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Set;
 
 import com.tiki.pages.HomePage;
 import com.tiki.pages.LoginPage;
+import com.tiki.pages.PHPDocumentationPage;
 import com.tiki.pages.TrackerPage;
 import com.tiki.utilities.BrowserUtils;
 import com.tiki.utilities.ConfigurationReader;
@@ -22,6 +24,7 @@ public class CreatingTrackerStepDefs {
 	LoginPage loginPage = new LoginPage();
 	HomePage homePage = new HomePage();
 	TrackerPage trackerPage = new TrackerPage();
+	PHPDocumentationPage docPage = new PHPDocumentationPage();
 
 	@Given("^a user logs into Tiki Application, HomePage is displayed$")
 	public void a_user_logges_into_Tiki_Application_HomePage_is_displayed() throws InterruptedException {
@@ -124,10 +127,18 @@ public class CreatingTrackerStepDefs {
 	@Given("^a user clicks Date and Time Format Help and verifies the title is \"([^\"]*)\"$")
 	public void a_user_clicks_Date_and_Time_Format_Help_and_verifies_the_title_is(String title) {
 		trackerPage.dateAndTimeFormatHelp.click();
+		BrowserUtils.switchToWindow(title);
+		System.out.println(Driver.getInstance().getTitle());
+		assertEquals(Driver.getInstance().getTitle(), title);
 	}
 
 	@Then("^a user scrolls down and clicks add a note and verifies the title is \"([^\"]*)\"$")
 	public void a_user_scrolls_down_and_clicks_add_a_note_and_verifies_the_title_is(String title) {
+		docPage.scrollDown();
+		BrowserUtils.clickElementWithJS(docPage.addNote);
 
+		BrowserUtils.switchToWindow(title);
+		System.out.println(Driver.getInstance().getTitle());
+		assertEquals(Driver.getInstance().getTitle(), title);
 	}
 }
