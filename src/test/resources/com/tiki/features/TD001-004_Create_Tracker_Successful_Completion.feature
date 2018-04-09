@@ -1,4 +1,4 @@
-
+@Create_Tracker
 Feature: Create the tracker
 
   Background: 
@@ -26,7 +26,6 @@ Feature: Create the tracker
     And a user enters "09:15", "AM" in Time box
     Then a user saves it and verifies the Name is "Typing Dead Tracker"
     
-@Create_Tracker
   Scenario: 
     And a user clicks on the Display and selects Show creation date when listing items
     And a user clicks Date and Time Format Help and verifies the title is "PHP: strftime - Manual"
