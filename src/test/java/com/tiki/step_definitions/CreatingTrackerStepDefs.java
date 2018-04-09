@@ -102,7 +102,7 @@ public class CreatingTrackerStepDefs {
 	@Given("^a user clicks Permissions and under Creation date constraint selects the date$")
 	public void a_user_clicks_Permissions_and_under_Creation_date_constraint_selects_the_date() {
 		trackerPage.permissions.click();
-		// sending the today`s date to Date box
+		// sending today`s date to Date box
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatters = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 		String todaysDate = date.format(formatters);
@@ -112,21 +112,22 @@ public class CreatingTrackerStepDefs {
 
 	@Given("^a user enters \"([^\"]*)\", \"([^\"]*)\" in Time box$")
 	public void a_user_enters_in_Time_box(String hours, String am) {
-		trackerPage.startTime.sendKeys(hours +" "+ am);
+		trackerPage.startTime.sendKeys(hours + " " + am);
 	}
 
 	@Given("^a user clicks on the Display and selects Show creation date when listing items$")
 	public void a_user_clicks_on_the_Display_and_selects_Show_creation_date_when_listing_items() {
-
+		trackerPage.display.click();
+		trackerPage.selectShowCreatedWhenListing();
 	}
 
 	@Given("^a user clicks Date and Time Format Help and verifies the title is \"([^\"]*)\"$")
-	public void a_user_clicks_Date_and_Time_Format_Help_and_verifies_the_title_is(String arg1) {
-
+	public void a_user_clicks_Date_and_Time_Format_Help_and_verifies_the_title_is(String title) {
+		trackerPage.dateAndTimeFormatHelp.click();
 	}
 
 	@Then("^a user scrolls down and clicks add a note and verifies the title is \"([^\"]*)\"$")
-	public void a_user_scrolls_down_and_clicks_add_a_note_and_verifies_the_title_is(String arg1) {
+	public void a_user_scrolls_down_and_clicks_add_a_note_and_verifies_the_title_is(String title) {
 
 	}
 }

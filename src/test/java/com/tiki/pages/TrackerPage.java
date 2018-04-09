@@ -71,6 +71,12 @@ public class TrackerPage {
 	
 	public WebElement startTime;
 	
+	@FindBy(css="input[name='showCreated']")
+	public WebElement showCreatedWhenListingBox;
+	
+	@FindBy (linkText="Date and Time Format Help")
+	public WebElement dateAndTimeFormatHelp;
+	
 	public void save() {
 		if(save.isDisplayed()) {
 			save.click();
@@ -95,5 +101,10 @@ public class TrackerPage {
 	public void selectDefaultOrderKey(String value) {
 		Select select = new Select(defaultOrderKey);
 		select.selectByVisibleText(value);
+	}
+	
+	public void selectShowCreatedWhenListing() {
+		JavascriptExecutor js = (JavascriptExecutor) Driver.getInstance();
+		js.executeScript("arguments[0].click();", showCreatedWhenListingBox);
 	}
 }
