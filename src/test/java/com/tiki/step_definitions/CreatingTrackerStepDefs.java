@@ -5,8 +5,6 @@ import static org.testng.Assert.assertTrue;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Set;
 
 import com.tiki.pages.HomePage;
 import com.tiki.pages.LoginPage;
@@ -18,6 +16,7 @@ import com.tiki.utilities.Driver;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class CreatingTrackerStepDefs {
 
@@ -58,13 +57,13 @@ public class CreatingTrackerStepDefs {
 
 	@Given("^a user selects Allow Ratings & changes Rating options \"([^\"]*)\"$")
 	public void a_user_selects_Allow_Ratings_changes_Rating_options(String ratings) {
-		trackerPage.selectAllowRatings();
+		BrowserUtils.clickElementWithJS(trackerPage.allowRatings);
 		trackerPage.ratingOptions.sendKeys(ratings);
 	}
 
 	@Given("^a user selects Allow Attachments and verifies Creation date, Views, File size are selected$")
 	public void a_user_selects_Allow_Attachments_and_verifies_Creation_date_Views_File_size_are_selected() {
-		trackerPage.selectAllowAttachments();
+		BrowserUtils.clickElementWithJS(trackerPage.allowAttachments);
 		assertTrue(trackerPage.creationDateCheckBox.isSelected());
 		assertTrue(trackerPage.viewsCheckBox.isSelected());
 		assertTrue(trackerPage.fileSizeCheckBox.isSelected());
@@ -93,7 +92,7 @@ public class CreatingTrackerStepDefs {
 
 	@Given("^a user selects Show Status and verifies \"([^\"]*)\" is diplayed$")
 	public void a_user_selects_Show_Status_and_verifies_is_diplayed(String showStatusAdminOnly) {
-		trackerPage.selectShowStatus();
+		BrowserUtils.clickElementWithJS(trackerPage.showStatusCheckBox);
 		assertEquals(trackerPage.showStatusAdminOnly.getText(), showStatusAdminOnly);
 	}
 
@@ -121,7 +120,7 @@ public class CreatingTrackerStepDefs {
 	@Given("^a user clicks on the Display and selects Show creation date when listing items$")
 	public void a_user_clicks_on_the_Display_and_selects_Show_creation_date_when_listing_items() {
 		trackerPage.display.click();
-		trackerPage.selectShowCreatedWhenListing();
+		BrowserUtils.clickElementWithJS(trackerPage.showCreatedWhenListingBox);
 	}
 
 	@Given("^a user clicks Date and Time Format Help and verifies the title is \"([^\"]*)\"$")
@@ -140,5 +139,37 @@ public class CreatingTrackerStepDefs {
 		BrowserUtils.switchToWindow(title);
 		System.out.println(Driver.getInstance().getTitle());
 		assertEquals(Driver.getInstance().getTitle(), title);
+	}
+
+	
+	//work on it
+	@Given("^tracker list is open$")
+	public void tracker_list_is_open() {
+		homePage.openTrackerList();
+	}
+
+	@When("^a user clicks on the first tracker and verifies the list of Properties is displayed: \"([^\"]*)\"$")
+	public void a_user_clicks_on_the_first_tracker_and_verifies_the_list_of_Properties_is_displayed(String arg1) {
+	    
+	}
+
+	@When("^a user opens Categories and select all$")
+	public void a_user_opens_Categories_and_select_all() {
+	   
+	}
+
+	@When("^a user verifies all Categories are selected$")
+	public void a_user_verifies_all_Categories_are_selected() {
+	    
+	}
+
+	@Given("^a user finds trackers with the same name & leaves unique tracker$")
+	public void a_user_finds_trackers_with_the_same_name_leaves_unique_tracker() {
+	    
+	}
+
+	@Given("^a user verifies all trackers have unique name$")
+	public void a_user_verifies_all_trackers_have_unique_name() {
+	  
 	}
 }
