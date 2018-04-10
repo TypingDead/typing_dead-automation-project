@@ -1,6 +1,9 @@
 package com.tiki.pages;
 
-import org.openqa.selenium.JavascriptExecutor;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -77,34 +80,29 @@ public class TrackerPage {
 	@FindBy (linkText="Date and Time Format Help")
 	public WebElement dateAndTimeFormatHelp;
 	
+	@FindBy(xpath="//div[@class='description help-block']/../a")
+	public WebElement anyTrackerLink;
+	
 	public void save() {
 		if(save.isDisplayed()) {
 			save.click();
 		}
 	}
-	
-	public void selectAllowRatings() {
-		JavascriptExecutor js = (JavascriptExecutor) Driver.getInstance();
-		js.executeScript("arguments[0].click();", allowRatings);
-	}
-	
-	public void selectAllowAttachments() {
-		JavascriptExecutor js = (JavascriptExecutor) Driver.getInstance();
-		js.executeScript("arguments[0].click();", allowAttachments);
-	}
-	
-	public void selectShowStatus() {
-		JavascriptExecutor js = (JavascriptExecutor) Driver.getInstance();
-		js.executeScript("arguments[0].click();", showStatusCheckBox);
-	}
-	
+		
 	public void selectDefaultOrderKey(String value) {
 		Select select = new Select(defaultOrderKey);
 		select.selectByVisibleText(value);
 	}
 	
-	public void selectShowCreatedWhenListing() {
-		JavascriptExecutor js = (JavascriptExecutor) Driver.getInstance();
-		js.executeScript("arguments[0].click();", showCreatedWhenListingBox);
+	public  void trackerList() {
+		List<WebElement> listLinks= Driver.getInstance().findElements(By.xpath("//div[@class='description help-block']/../a"));
+		List < WebElement> uniqueLinks=new ArrayList<>();
+		for (int i = 0; i < listLinks.size(); i++) {
+			for (int j = i+1; j < uniqueLinks.size(); j++) {
+				if(listLinks.get(i).equals(listLinks.get(j))) {
+					uniqueLinks.add(listLinks.get(i));
+				}
+			}
+		}
 	}
 }

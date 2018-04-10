@@ -1,3 +1,4 @@
+@Properties_&_duplicate_trackers
 Feature: Existing tracker properties
 
   Background: 
