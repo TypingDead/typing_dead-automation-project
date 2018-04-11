@@ -5,6 +5,11 @@ import static org.testng.Assert.assertTrue;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import com.tiki.pages.HomePage;
 import com.tiki.pages.LoginPage;
@@ -29,7 +34,7 @@ public class CreatingTrackerStepDefs {
 	public void a_user_logges_into_Tiki_Application_HomePage_is_displayed() throws InterruptedException {
 		Driver.getInstance().get(ConfigurationReader.getProperty("url"));
 		loginPage.login(ConfigurationReader.getProperty("username"), ConfigurationReader.getProperty("password"));
-		loginPage.openMenuPage();
+		// loginPage.openMenuPage();
 		assertEquals(Driver.getInstance().getTitle(), homePage.homePageTitle);
 	}
 
@@ -141,35 +146,49 @@ public class CreatingTrackerStepDefs {
 		assertEquals(Driver.getInstance().getTitle(), title);
 	}
 
-	
-	//work on it
+	// work on it
 	@Given("^tracker list is open$")
 	public void tracker_list_is_open() {
 		homePage.openTrackerList();
 	}
 
-	@When("^a user clicks on the first tracker and verifies the list of Properties is displayed: \"([^\"]*)\"$")
-	public void a_user_clicks_on_the_first_tracker_and_verifies_the_list_of_Properties_is_displayed(String arg1) {
-	    
+	@When("^a user clicks on the first tracker and verifies the list of Properties is displayed:$")
+	public void a_user_clicks_on_the_first_tracker_and_verifies_the_list_of_Properties_is_displayed(
+			List<String> properties) {
+		trackerPage.anyTrackerLink.click();
+		trackerPage.properties.click();
+		List<String> propertiesOption = new ArrayList<>();
+		List<WebElement> propertiesOptionElement = Driver.getInstance().findElements(By.className("accordion-toggle"));
+		for (WebElement webElement : propertiesOptionElement) {
+			propertiesOption.add(webElement.getText());
+		}
+
+		for (int i = 0; i < properties.size(); i++) {
+			assertEquals(propertiesOption.get(i), properties.get(i));
+		}
+
 	}
 
 	@When("^a user opens Categories and select all$")
 	public void a_user_opens_Categories_and_select_all() {
-	   
+		BrowserUtils.clickElementWithJS(trackerPage.categories);
+		BrowserUtils.clickElementWithJS(trackerPage.selectAllCategories);
 	}
 
 	@When("^a user verifies all Categories are selected$")
 	public void a_user_verifies_all_Categories_are_selected() {
-	    
+
 	}
 
 	@Given("^a user finds trackers with the same name & leaves unique tracker$")
 	public void a_user_finds_trackers_with_the_same_name_leaves_unique_tracker() {
-	    
+		System.out.println("****************************************");
+		System.out.println(trackerPage.trackerList().toString());
+		System.out.println("****************************************");
 	}
 
 	@Given("^a user verifies all trackers have unique name$")
 	public void a_user_verifies_all_trackers_have_unique_name() {
-	  
+
 	}
 }

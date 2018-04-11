@@ -27,82 +27,98 @@ public class TrackerPage {
 	@FindBy(css = "button[class='btn btn-primary auto-btn']")
 	public WebElement save;
 
-	@FindBy(partialLinkText="Features")
+	@FindBy(partialLinkText = "Features")
 	public WebElement features;
 
-	@FindBy(name="useRatings")
+	@FindBy(name = "useRatings")
 	public WebElement allowRatings;
 
 	public WebElement ratingOptions;
-	
-	@FindBy(name="useAttachments")
+
+	@FindBy(name = "useAttachments")
 	public WebElement allowAttachments;
-	
-	
-	@FindBy(css="input[value='created']")
+
+	@FindBy(css = "input[value='created']")
 	public WebElement creationDateCheckBox;
-	
-	@FindBy(css="input[value='hits']")
+
+	@FindBy(css = "input[value='hits']")
 	public WebElement viewsCheckBox;
-	
-	@FindBy(css="input[value='filesize']")
+
+	@FindBy(css = "input[value='filesize']")
 	public WebElement fileSizeCheckBox;
-	
-	@FindBy(linkText="Typing Dead Tracker")
+
+	@FindBy(linkText = "Typing Dead Tracker")
 	public WebElement trackerName;
-	
-	@FindBy(xpath="//a[contains(text(),'Typing Dead')]/../div")
+
+	@FindBy(xpath = "//a[contains(text(),'Typing Dead')]/../div")
 	public WebElement trackerDescription;
-	
-	@FindBy(partialLinkText="Display")
+
+	@FindBy(partialLinkText = "Display")
 	public WebElement display;
-	
+
 	public WebElement logo;
-	
-	@FindBy(css="input[name='showStatus']")
+
+	@FindBy(css = "input[name='showStatus']")
 	public WebElement showStatusCheckBox;
-	
-	@FindBy(xpath="//div[@data-on='showStatus']/label")
+
+	@FindBy(xpath = "//div[@data-on='showStatus']/label")
 	public WebElement showStatusAdminOnly;
-	
+
 	public WebElement defaultOrderKey;
-	
-	@FindBy(partialLinkText="Permissions")
+
+	@FindBy(partialLinkText = "Permissions")
 	public WebElement permissions;
-	
+
 	public WebElement startDate;
-	
+
 	public WebElement startTime;
-	
-	@FindBy(css="input[name='showCreated']")
+
+	@FindBy(css = "input[name='showCreated']")
 	public WebElement showCreatedWhenListingBox;
-	
-	@FindBy (linkText="Date and Time Format Help")
+
+	@FindBy(linkText = "Date and Time Format Help")
 	public WebElement dateAndTimeFormatHelp;
-	
-	@FindBy(xpath="//div[@class='description help-block']/../a")
+
+	@FindBy(xpath = "//div[@class='description help-block']/../a")
 	public WebElement anyTrackerLink;
-	
+
+	@FindBy(css = "a[href='tiki-ajax_services.php?controller=tracker&action=replace&trackerId=38&modal=1']")
+	public WebElement properties;
+
+	@FindBy(className = "accordion-toggle")
+	public WebElement propertiesOption;
+
+	@FindBy(xpath="(//a[@class='accordion-toggle'])[8]")
+	public WebElement categories;
+
+	@FindBy(css = "label[for='clickall']")
+	public WebElement selectAllCategories;
+
 	public void save() {
-		if(save.isDisplayed()) {
+		if (save.isDisplayed()) {
 			save.click();
 		}
 	}
-		
+
 	public void selectDefaultOrderKey(String value) {
 		Select select = new Select(defaultOrderKey);
 		select.selectByVisibleText(value);
 	}
-	
-	public  void trackerList() {
-		List<WebElement> listLinks= Driver.getInstance().findElements(By.xpath("//div[@class='description help-block']/../a"));
-		List < WebElement> uniqueLinks=new ArrayList<>();
+
+	public List<WebElement> trackerList() {
+		List<WebElement> listLinks = Driver.getInstance()
+				.findElements(By.xpath("//div[@class='description help-block']/../a"));
+		for (WebElement webElement : listLinks) {
+			System.out.println(webElement.getText());
+		}
+		List<WebElement> uniqueLinks = new ArrayList<>();
 		for (int i = 0; i < listLinks.size(); i++) {
-			for (int j = i+1; j < uniqueLinks.size(); j++) {
-				if(listLinks.get(i).equals(listLinks.get(j))) {
+			for (int j = i + 1; j < listLinks.size(); j++) {
+				if (!listLinks.get(i).equals(listLinks.get(j))) {
 					uniqueLinks.add(listLinks.get(i));
 				}
 			}
 		}
+		return uniqueLinks;
 	}
 }
