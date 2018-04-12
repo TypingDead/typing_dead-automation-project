@@ -146,7 +146,6 @@ public class CreatingTrackerStepDefs {
 		assertEquals(Driver.getInstance().getTitle(), title);
 	}
 
-	// work on it
 	@Given("^tracker list is open$")
 	public void tracker_list_is_open() {
 		homePage.openTrackerList();
@@ -177,9 +176,18 @@ public class CreatingTrackerStepDefs {
 
 	@When("^a user verifies all Categories are selected$")
 	public void a_user_verifies_all_Categories_are_selected() {
-
+		for (int i = 1; i < 6; i++) {
+			if (i != 4) {
+				assertTrue(Driver.getInstance().findElement(By.id("categ-" + i)).isSelected());
+			}
+		}
 	}
 
+	@When("^a user saves it tracker$")
+	public void a_user_saves_it_tracker() {
+		trackerPage.save();
+	}
+// work on it
 	@Given("^a user finds trackers with the same name & leaves unique tracker$")
 	public void a_user_finds_trackers_with_the_same_name_leaves_unique_tracker() {
 		System.out.println("****************************************");
