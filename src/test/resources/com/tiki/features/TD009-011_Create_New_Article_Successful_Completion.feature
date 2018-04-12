@@ -6,7 +6,7 @@ Feature: Create new Article
 
   
   Scenario: Create new Article with content
-    Then a user fills the Title field "Tiping Dead Forever"
+    Then a user fills the Title field "Typing Dead Forever"
     And a user fills the Heading field "It's the best team" and Body field "Never give up"
     And a user selects Allow full HTML checkbox
     And a user saves it
@@ -26,6 +26,12 @@ Feature: Create new Article
   Scenario Outline: Delete Articles 
     Then a user opens List Articles and saves the number of articles
     And a user finds "<ArticlesTitle>" and hovers over Actions link, removes the article
+    Then a user verifies "<Article Title>" and "Jimmy Johns" and "2017-06-11" is displayed
+    
+@Dima
+  Scenario: Delete Articles #number should be changed 
+    Then a user opens List Articles and saves the number of articles 
+    And a user finds "Typing Dead Forever" and hovers over Actions link, removes the article
     And a user verifies the number of articles is less by one
 
     Examples: 

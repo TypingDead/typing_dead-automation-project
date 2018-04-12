@@ -72,7 +72,7 @@ public class CreatingAndDeleteNewArticlesStepDefinitions {
 
 	@Then("^a user verifies article Title, Heading and Body text is displayed$")
 	public void a_user_verifies_article_Title_Heading_and_Body_text_is_displayed() {
-		assertTrue(articlePage.articleTitle.getText().contains("Tiping Dead Forever"));
+		assertTrue(articlePage.articleTitle.getText().contains("Typing Dead Forever"));
 		assertTrue(articlePage.articleHeading.getText().contains("It's the best team"));
 		assertTrue(articlePage.articleBody.getText().contains("Never give up"));
 	}
