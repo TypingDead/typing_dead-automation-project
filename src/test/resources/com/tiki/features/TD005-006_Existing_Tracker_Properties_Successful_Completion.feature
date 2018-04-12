@@ -17,7 +17,7 @@ Feature: Existing tracker properties
       | Categories     |
     And a user opens Categories and select all
     And a user verifies all Categories are selected
-    And a user saves it
+    And a user saves it tracker
 
   Scenario: Delete duplicate trackers
     And a user finds trackers with the same name & leaves unique tracker

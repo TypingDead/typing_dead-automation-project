@@ -6,7 +6,7 @@ Feature: Create new Article
     Then a user creates New Article
 @Dima
   Scenario: Create new Article with content
-    Then a user fills the Title field "Tiping Dead Forever"
+    Then a user fills the Title field "Typing Dead Forever"
     And a user fills the Heading field "It's the best team" and Body field "Never give up"
     And a user selects Allow full HTML checkbox
     And a user saves it
@@ -24,5 +24,5 @@ Feature: Create new Article
 @Dima
   Scenario: Delete Articles #number should be changed 
     Then a user opens List Articles and saves the number of articles 
-    And a user finds "Tiping Dead Forever" and hovers over Actions link, removes the article
+    And a user finds "Typing Dead Forever" and hovers over Actions link, removes the article
     And a user verifies the number of articles is less by one
