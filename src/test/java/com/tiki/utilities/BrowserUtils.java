@@ -34,6 +34,14 @@ public class BrowserUtils {
 		js.executeScript("arguments[0].click();", element);
 	}
 	
+	
+	public static void scrollDownPageWithJS(WebElement element) {
+		JavascriptExecutor js = (JavascriptExecutor) Driver.getInstance();
+		js.executeScript("arguments[0].scrollIntoView();", element);
+	}
+
+	
+	
 	public static void hoverOver(WebElement element) {
 		Actions action = new Actions(Driver.getInstance());
 		action.moveToElement(element).perform();

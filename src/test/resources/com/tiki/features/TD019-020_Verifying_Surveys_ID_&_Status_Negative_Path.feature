@@ -1,11 +1,10 @@
+@Survey_create
 Feature:
-
- Background: 
-    Given a user logs into Tiki Application, HomePage is displayed
-    And a user opens Surveys 
     
-@Survey_Status
-Scenario: Survey status is not closed
+  Scenario: Survey status is not closed
+  
+  Given a user logs into Tiki Application, HomePage is displayed
+  And a user opens Surveys 
 	And a user creates new survey, enters "TypingDead" in Name box and changes Status to closed
 	And a user saves it survey
 	And a user verifies the name and status is closed

@@ -43,6 +43,12 @@ public class HomePage {
 	@FindBy(xpath="//*[@id=\"menu_option266\"]/li[2]/a")
 	public WebElement createBlog;
 	
+	@FindBy(linkText="Surveys")
+	public WebElement Survey;
+	
+	@FindBy(linkText="List Surveys")
+	public WebElement listSurvey;
+	
 	@FindBy(css= "button[class='dropdown-toggle login_link btn btn-link']")
 	public WebElement logoutMenu;
 	

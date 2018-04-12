@@ -34,7 +34,7 @@ public class CreatingTrackerStepDefs {
 	public void a_user_logges_into_Tiki_Application_HomePage_is_displayed() throws InterruptedException {
 		Driver.getInstance().get(ConfigurationReader.getProperty("url"));
 		loginPage.login(ConfigurationReader.getProperty("username"), ConfigurationReader.getProperty("password"));
-		// loginPage.openMenuPage();
+		 loginPage.openMenuPage();
 		assertEquals(Driver.getInstance().getTitle(), homePage.homePageTitle);
 	}
 
