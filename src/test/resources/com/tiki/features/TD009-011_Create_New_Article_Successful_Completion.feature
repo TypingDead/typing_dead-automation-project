@@ -23,7 +23,7 @@ Feature: Create new Article
     Then a user verifies "Typing Dead TEST" and "Jimmy Johns" and "2016-06-11" is displayed
 
  
-  Scenario Outline: Delete Articles #number should be changed
+  Scenario Outline: Delete Articles 
     Then a user opens List Articles and saves the number of articles
     And a user finds "<ArticlesTitle>" and hovers over Actions link, removes the article
     And a user verifies the number of articles is less by one
