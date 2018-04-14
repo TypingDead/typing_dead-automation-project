@@ -2,6 +2,7 @@ package com.tiki.pages;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import com.tiki.utilities.BrowserUtils;
 import com.tiki.utilities.Driver;
 
 public class TrackerPage {
@@ -82,17 +84,23 @@ public class TrackerPage {
 	@FindBy(xpath = "//div[@class='description help-block']/../a")
 	public WebElement anyTrackerLink;
 
-	@FindBy(css = "a[href='tiki-ajax_services.php?controller=tracker&action=replace&trackerId=38&modal=1']")
+	@FindBy(xpath="//span[@class='icon icon-settings glyphicon glyphicon-wrench ']/..")
 	public WebElement properties;
 
 	@FindBy(className = "accordion-toggle")
 	public WebElement propertiesOption;
 
-	@FindBy(xpath="(//a[@class='accordion-toggle'])[8]")
+	@FindBy(xpath = "(//a[@class='accordion-toggle'])[8]")
 	public WebElement categories;
 
 	@FindBy(css = "label[for='clickall']")
 	public WebElement selectAllCategories;
+
+	@FindBy(css = "span[class='icon icon-wrench glyphicon glyphicon-wrench '])")
+	public WebElement actions;
+
+	@FindBy(css = "button[class='btn btn-default btn-sm auto-btn']")
+	public WebElement remove;
 
 	public void save() {
 		if (save.isDisplayed()) {
@@ -105,20 +113,48 @@ public class TrackerPage {
 		select.selectByVisibleText(value);
 	}
 
-	public List<WebElement> trackerList() {
-		List<WebElement> listLinks = Driver.getInstance()
-				.findElements(By.xpath("//div[@class='description help-block']/../a"));
-		for (WebElement webElement : listLinks) {
-			System.out.println(webElement.getText());
-		}
-		List<WebElement> uniqueLinks = new ArrayList<>();
-		for (int i = 0; i < listLinks.size(); i++) {
-			for (int j = i + 1; j < listLinks.size(); j++) {
-				if (!listLinks.get(i).equals(listLinks.get(j))) {
-					uniqueLinks.add(listLinks.get(i));
+	public void removeDuplicateTracker() {
+		int num = 1;
+		do {
+			List<WebElement> listLinks = Driver.getInstance()
+					.findElements(By.xpath("//div[@class='description help-block']/../a"));
+
+			for (int i = 0; i < listLinks.size(); i++) {
+				for (int j = i + 1; j < listLinks.size(); j++) {
+					if (listLinks.get(i).getText().equalsIgnoreCase(listLinks.get(j).getText())) {						
+						BrowserUtils.hoverOver(Driver.getInstance().findElement(By
+								.xpath("(//span[@class='icon icon-wrench glyphicon glyphicon-wrench '])[" + j + "]")));
+						Driver.getInstance()
+								.findElement(By.xpath(
+										"(//span[@class='icon icon-remove glyphicon glyphicon-remove '])[1]"))
+								.click();
+						remove.click();
+						Driver.getInstance().navigate().refresh();
+						listLinks = Driver.getInstance()
+								.findElements(By.xpath("//div[@class='description help-block']/../a"));
+					} else
+						num = 0;
 				}
 			}
+		} while (num != 0);
+	}
+	
+	public boolean hasDuplicates() {
+		List<WebElement> listLinks = Driver.getInstance()
+				.findElements(By.xpath("//div[@class='description help-block']/../a"));
+		List<String> uniqueTrackers =new ArrayList<>();
+		for (WebElement list : listLinks) {
+			uniqueTrackers.add(list.getText());
 		}
-		return uniqueLinks;
+		if (uniqueTrackers.size() <= 1)
+			return false;
+
+		for (int i = 0; i < uniqueTrackers.size(); i++) {
+			for (int j = i + 1; j < uniqueTrackers.size(); j++) {
+				if (uniqueTrackers.get(i) == uniqueTrackers.get(j))
+					return true;
+			}
+		}
+		return false;
 	}
 }

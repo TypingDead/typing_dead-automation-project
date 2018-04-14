@@ -1,4 +1,4 @@
-@Properties_&_duplicate_trackers
+@Properties_&_duplicate_trackers @Regression
 Feature: Existing tracker properties
 
   Background: 

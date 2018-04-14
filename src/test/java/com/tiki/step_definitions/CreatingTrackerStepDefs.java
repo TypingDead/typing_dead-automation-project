@@ -1,6 +1,7 @@
 package com.tiki.step_definitions;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import java.time.LocalDate;
@@ -117,7 +118,7 @@ public class CreatingTrackerStepDefs {
 
 	}
 
-	@Given("^a user enters \"([^\"]*)\", \"([^\"]*)\" in Time box$")
+	@Given("^a user enters \"([^\"])\", \"([^\"])\" in Time box$")
 	public void a_user_enters_in_Time_box(String hours, String am) {
 		trackerPage.startTime.sendKeys(hours + " " + am);
 	}
@@ -187,16 +188,16 @@ public class CreatingTrackerStepDefs {
 	public void a_user_saves_it_tracker() {
 		trackerPage.save();
 	}
-// work on it
+
 	@Given("^a user finds trackers with the same name & leaves unique tracker$")
 	public void a_user_finds_trackers_with_the_same_name_leaves_unique_tracker() {
-		System.out.println("****************************************");
-		System.out.println(trackerPage.trackerList().toString());
-		System.out.println("****************************************");
+
+		trackerPage.removeDuplicateTracker();
+
 	}
 
 	@Given("^a user verifies all trackers have unique name$")
 	public void a_user_verifies_all_trackers_have_unique_name() {
-
+		assertFalse(trackerPage.hasDuplicates());
 	}
 }
