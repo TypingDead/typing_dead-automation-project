@@ -118,7 +118,7 @@ public class CreatingTrackerStepDefs {
 
 	}
 
-	@Given("^a user enters \"([^\"])\", \"([^\"])\" in Time box$")
+	@Given("^a user enters \"([^\"]*)\", \"([^\"]*)\" in Time box$")
 	public void a_user_enters_in_Time_box(String hours, String am) {
 		trackerPage.startTime.sendKeys(hours + " " + am);
 	}
