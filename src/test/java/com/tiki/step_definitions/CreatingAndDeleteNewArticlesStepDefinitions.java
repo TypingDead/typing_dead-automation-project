@@ -141,6 +141,9 @@ public class CreatingAndDeleteNewArticlesStepDefinitions {
 	public void a_user_finds_and_hovers_over_Actions_link_removes_the_article(String arg1) {
 		articlePage.deleteArticleNumber(articlePage.numberOfArticlesBefore);;
 		BrowserUtils.waitFor(2);
+		articlePage.sortedListByPublishdate.click();
+		articlePage.actionsLink.click();
+		BrowserUtils.waitFor(2);
 		articlePage.removeLink.click();
 		BrowserUtils.waitFor(2);
 		articlePage.comfirmActionButton.click();
@@ -150,7 +153,7 @@ public class CreatingAndDeleteNewArticlesStepDefinitions {
 	public void a_user_verifies_the_number_of_articles_is_less_by_one() {
 		after = articlePage.numberOfArticlesBefore.size();
 		System.out.println("before: " + before + "; After: " + after);
-		assertTrue(before == after + 1);
+		assertTrue(before == after );
 	}
 
 }

@@ -1,3 +1,4 @@
+@Dima
 Feature: Create new Article
 
   Background: 
@@ -28,7 +29,7 @@ Feature: Create new Article
     And a user finds "<ArticlesTitle>" and hovers over Actions link, removes the article
     Then a user verifies "<Article Title>" and "Jimmy Johns" and "2017-06-11" is displayed
     
-@Dima
+
   Scenario Outline: Delete Articles #number should be changed 
     Then a user opens List Articles and saves the number of articles 
     And a user finds "Typing Dead Forever" and hovers over Actions link, removes the article

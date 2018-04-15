@@ -97,6 +97,9 @@ public class ArticlesPage {
 	@FindBy(name="publish_Day")
 	public WebElement publishDay;
 	
+	@FindBy(xpath="//tbody//th[6]")
+	public WebElement sortedListByPublishdate;
+	
 	@FindBy(name="publish_Year")
 	public WebElement publishYear;
 	
