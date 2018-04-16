@@ -49,7 +49,6 @@ public class GeneralSettingsStepDefs {
 	@When("^a user clicks Apply1$")
 	public void a_user_clicks_Apply1() {
 	    generalSettings.browserTitle.sendKeys(Keys.ENTER);
-	    
 	}
 
 	@When("^a user verifies \"([^\"]*)\" and the page title contains \"([^\"]*)\"$")
