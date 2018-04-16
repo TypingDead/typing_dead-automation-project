@@ -3,7 +3,7 @@ Feature: Create Categories
 
   Background: 
     Given a user logs into Tiki Application, HomePage is displayed
-@create_categories @Regression
+@create_categories 
   Scenario: 
     And a user creates tracker
     And under General a user fills up the Name "Typing Dead Tracker"

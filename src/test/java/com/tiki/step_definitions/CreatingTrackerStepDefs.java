@@ -131,7 +131,7 @@ public class CreatingTrackerStepDefs {
 
 	@Given("^a user clicks Date and Time Format Help and verifies the title is \"([^\"]*)\"$")
 	public void a_user_clicks_Date_and_Time_Format_Help_and_verifies_the_title_is(String title) {
-		trackerPage.dateAndTimeFormatHelp.click();
+		BrowserUtils.clickElementWithJS(trackerPage.dateAndTimeFormatHelp);
 		BrowserUtils.switchToWindow(title);
 		System.out.println(Driver.getInstance().getTitle());
 		assertEquals(Driver.getInstance().getTitle(), title);

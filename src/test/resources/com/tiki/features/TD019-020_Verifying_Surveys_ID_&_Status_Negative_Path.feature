@@ -1,4 +1,4 @@
-@Survey_create
+@Survey_create @Regression
 Feature:
     
   Scenario: Survey status is not closed

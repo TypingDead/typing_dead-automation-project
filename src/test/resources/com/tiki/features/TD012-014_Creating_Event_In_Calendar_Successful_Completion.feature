@@ -1,3 +1,4 @@
+@Regression
 Feature: Creating a new calendar
 
   Background: 

@@ -1,4 +1,4 @@
-@Dima
+@Dima @Regression
 Feature: Create new Article
 
   Background: 
